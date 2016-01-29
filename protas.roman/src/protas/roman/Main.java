@@ -1,7 +1,6 @@
 package protas.roman;
 
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.*;
@@ -9,15 +8,17 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Main extends javax.swing.JFrame {
+/**
+ * Glowna klasa integrujaca wszystki formatki kontrolne i wyswietlajaca obraz
+ */
+public class Main extends javax.swing.JFrame
+{
 	private static final long serialVersionUID = 1L;
     public BufferedImage originalImage = null;
     public BufferedImage workImage = null;   
     // Formatka kontrolna z parametrami konkretnej operacji
     private BCG colorEdit = null;
     private Histogram histogram = null;
-    private JPanel testpanel = null;
-    private JButton btTest=null;
     private CMYK rgb2cmyk = null;
     private HSL rgb2hsl = null;
     private LAB rgb2lab = null;
@@ -32,21 +33,14 @@ public class Main extends javax.swing.JFrame {
     private JLabel imageLabel = null;
     private ImageIcon imageIcon = null;
 
-
     public Main()
     {
-        setTitle("Przetwarzanie obrazów cyfrowych - Protas Roman");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
-        getContentPane().setLayout(null);
+        setTitle("POC - Imie Nazwisko");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);        
         initComponents();
     }
-    @Override
-    public void repaint(){
-        super.repaint();
-    }
-    public void refresh(){
-        this.getContentPane().repaint();
-    }
+        
+    // Metoda przywracajÄ…ca oryginalny obraz do obrazu roboczego
     public void revertImage()
     {
         try
@@ -57,6 +51,8 @@ public class Main extends javax.swing.JFrame {
             imageLabel.repaint();
         } catch (Exception e) {}
     }
+
+    // Metoda aktualizujaca oryginalny obraz danymi z obrazu roboczego
     public void updateImage()
     {
         try
@@ -66,22 +62,35 @@ public class Main extends javax.swing.JFrame {
             imageLabel.setIcon(imageIcon);
         } catch (Exception e) {}
     }
+
+    // Metoda wczytujaca obraz z pliku i tworzaca na jego podstawie obraz oryginalny i jego kopie robocza
     public void readImage(String fn)
     {
         try
         {
+            // Wczytanie obrazu z pliku
             BufferedImage loadImage = ImageIO.read(new File(fn));
+            
+            // Oryginalny obraz tworzony na podstawie wczytanego z ewentualna konwersja obrazu do formatu 32 bit RGB
             originalImage = new BufferedImage(loadImage.getWidth(), loadImage.getHeight(), BufferedImage.TYPE_INT_RGB);
             originalImage.getGraphics().drawImage(loadImage, 0, 0, null);            
+            
+            // Roboczy obraz tworzony jako kopia oryginalnego
             workImage = new BufferedImage(loadImage.getWidth(), loadImage.getHeight(), BufferedImage.TYPE_INT_RGB);
             originalImage.copyData(workImage.getRaster());
+
+            // Wyswietlenie roboczego obrazu na formatce
             imageIcon = new ImageIcon(workImage);
             imageLabel.setIcon(imageIcon);
+            
         } catch (Exception e)
         {
             System.out.println("Image read error: " + e.getMessage());
         }
     }
+
+
+
     private void initComponents()
     {
         JMenuBar menuBar = new JMenuBar();
@@ -269,20 +278,17 @@ public class Main extends javax.swing.JFrame {
             
         });
         menu.add(mitem);
-        
-    
-        imageLabel = new JLabel();      
-        JScrollPane scroll = new JScrollPane(imageLabel);
-       // add(new JScrollPane(imageLabel));
-    }
-    public static void main(String[] args)
-    {
-        Main main = new Main();   
-        main.setVisible(true);
-        main.setSize(1245, 700);
-        main.setLocationRelativeTo(null);
-                      
+                
+        imageLabel = new JLabel();                
+        add(new JScrollPane(imageLabel));
     }
 
-   
+    public static void main(String[] args)
+    {
+        Main main = new Main();
+        main.setVisible(true);
+        main.setSize(800, 600);
+        
+        //main.setExtendedState(Frame.MAXIMIZED_BOTH);               
+    }
 }

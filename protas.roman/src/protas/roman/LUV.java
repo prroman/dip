@@ -283,7 +283,6 @@ public class LUV extends javax.swing.JFrame {
                 this.originalImage.setRGB(x, y, this.image.getRGB(x, y));
             }
         }
-        this.parent.refresh();
         this.dispose();
     }
     private void bSliderStateChanged(javax.swing.event.ChangeEvent evt) {
