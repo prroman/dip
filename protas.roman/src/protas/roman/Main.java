@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
     private Splot convolution = null;
     private Gaussian gaussian = null;
     private Unsharp unsharp = null;
-    private MinMaxMed minmaxmed = null;
+    private Median minmaxmed = null;
     private TFourier tfourier = null;
     private Watermark watermark = null;    
     // Komponenty do wyЕ›wietlania obrazu na formatce glownej
@@ -237,7 +237,7 @@ public class Main extends javax.swing.JFrame {
         {
             public void actionPerformed(ActionEvent ae)
             {
-                minmaxmed = new MinMaxMed(workImage ,Main.this);
+                minmaxmed = new Median(workImage ,Main.this);
                 minmaxmed.pack();
                 minmaxmed.setVisible(true);
             }

@@ -1,9 +1,9 @@
 package protas.roman;
 
-import static protas.roman.Gauss.rozmiarMaski;
-import static protas.roman.Gauss.secGauss;
-import static protas.roman.Gauss.liczG;
-import static protas.roman.Gauss.wzmocnienie;
+import static protas.roman.Gaussian.rozmiarMaski;
+import static protas.roman.Gaussian.secGauss;
+import static protas.roman.Gaussian.liczG;
+import static protas.roman.Gaussian.wzmocnienie;
 import protas.roman.Sortowanie;
 
 public class ImageAlgorithms {
