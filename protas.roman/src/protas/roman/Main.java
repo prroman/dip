@@ -31,7 +31,7 @@ public class Main extends javax.swing.JFrame {
     // Komponenty do wyЕ›wietlania obrazu na formatce glownej
     private JLabel imageLabel = null;
     private ImageIcon imageIcon = null;
-    private Watermark watermark = null;
+
 
     public Main()
     {
@@ -43,7 +43,6 @@ public class Main extends javax.swing.JFrame {
     @Override
     public void repaint(){
         super.repaint();
-        HisDataSet (workImage);
     }
     public void refresh(){
         this.getContentPane().repaint();
