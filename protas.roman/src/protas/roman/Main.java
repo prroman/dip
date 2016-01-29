@@ -35,7 +35,7 @@ public class Main extends javax.swing.JFrame
 
     public Main()
     {
-        setTitle("POC - Imie Nazwisko");
+        setTitle("Przetwarzanie obrazów cyfrowych - Protas Roman");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);        
         initComponents();
     }
